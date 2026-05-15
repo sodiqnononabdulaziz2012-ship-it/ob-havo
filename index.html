@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    
+    <style>
+        
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        
+        body{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            background:#050b1a;
+            color:white;
+        }
+        
+        .container{
+            width:500px;
+            padding:30px;
+            border-radius:15px;
+            background:#0b1224;
+            box-shadow:0 0 20px rgba(0,0,0,0.5);
+            text-align:center;
+        }
+        
+        .temp{
+            font-size:50px;
+            color:gold;
+            margin-bottom:10px;
+        }
+        
+        .title{
+            margin-bottom:20px;
+            color:#ccc;
+        }
+        
+        .range{
+            width:100%;
+            margin:20px 0;
+            accent-color:yellow;
+        }
+        
+        .value{
+            margin:10px 0;
+            font-size:20px;
+        }
+        
+        .boxes{
+            display:flex;
+            gap:20px;
+            margin-top:20px;
+        }
+        
+        .box{
+            flex:1;
+            padding:20px;
+            border-radius:10px;
+            background:#111a33;
+        }
+        
+        .box h2{
+            margin-bottom:10px;
+        }
+        
+        .f{
+            color:#ff7a45;
+        }
+        
+        .k{
+            color:#9a7bff;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <h1 class="temp">0°C</h1>
+        <h3 class="title">Sovuq</h3>
+        
+        <input type="range" min="-50" max="50" value="0" class="range">
+        
+        <div class="value">0°C</div>
+        
+        <div class="boxes">
+            
+            <div class="box">
+                <h2 class="f">32.00</h2>
+                <p>°F Fahrenheit</p>
+            </div>
+            
+            <div class="box">
+                <h2 class="k">273.15</h2>
+                <p>K Kelvin</p>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    <script>
+        
+        const range = document.querySelector(".range")
+        const title = document.querySelector(".title")
+        const temp = document.querySelector(".temp")
+        const valueText = document.querySelector(".value")
+        const f = document.querySelector(".f")
+        const k = document.querySelector(".k")
+        
+        range.oninput = () => {
+            
+            let c = Number(range.value)
+            
+            temp.innerHTML = c + "°C"
+            valueText.innerHTML = c + "°C"
+            
+            let fahrenheit = (c * 9/5) + 32
+            let kelvin = c + 273.15
+            
+            f.innerHTML = fahrenheit.toFixed(2)
+            k.innerHTML = kelvin.toFixed(2)
+            
+            if(c <= 0){
+                title.innerHTML = "Sovuq ❄️"
+                range.style.accentColor = "blue"
+            }
+            
+            else if(c > 0 && c < 15){
+                title.innerHTML = "Iliq 🌤"
+                range.style.accentColor = "green"
+            }
+            
+            else if(c >= 15 && c < 35){
+                title.innerHTML = "Issiq ☀️"
+                range.style.accentColor = "yellow"
+            }
+            
+            else{
+                title.innerHTML = "Juda issiq 🔥"
+                range.style.accentColor = "red"
+            }
+            
+        }
+        
+    </script>
+    
+</body>
+</html>
